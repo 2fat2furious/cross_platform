@@ -21,7 +21,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DisposeBag.logger = null;
 
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   // construct RemoteDataSource
   const RemoteDataSource remoteDataSource = ApiService();
