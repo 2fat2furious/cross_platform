@@ -119,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage>
                             Center(
                               child: Image.asset(
                                 'assets/logo.png',
-                                width: MediaQuery.of(context).size.width-10,
+                                 width: 350,
                               ),
                             ),
                           ],
