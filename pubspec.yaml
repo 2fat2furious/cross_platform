@@ -23,6 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.16.1
+  scoped_model: ^1.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -42,7 +46,8 @@ dependencies:
   disposebag: ^1.4.0
   flutter_disposebag: ^1.0.0
   flutter_bloc_pattern: ^1.2.0
-
+  sqflite: any
+  path_provider: ^0.4.1
 
 dependency_overrides:
   rxdart: 0.25.0
@@ -69,6 +74,14 @@ flutter:
     - assets/user.png
     - assets/logo.png
     - background.jpg
+    - image/android_hangman_arm1.png
+    - image/android_hangman_arm2.png
+    - image/android_hangman_body.png
+    - image/android_hangman_gallows.png
+    - image/android_hangman_head.png
+    - image/android_hangman_help.png
+    - image/android_hangman_leg1.png
+    - image/android_hangman_leg2.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -100,3 +113,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  generate: true

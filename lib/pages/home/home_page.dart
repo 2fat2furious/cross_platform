@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cross_platform/pages/game/game_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
@@ -95,6 +96,19 @@ class _HomePageState extends State<HomePage>
                 onPressed: homeBloc.logout,
                 label: Text('Logout'),
                 icon: Icon(Icons.exit_to_app),
+                color: Theme.of(context).backgroundColor,
+                colorBrightness: Brightness.dark,
+                splashColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            Container(
+              height: 48.0,
+              margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
+              width: double.infinity,
+              child: RaisedButton.icon(
+                onPressed: () {Navigator.pushNamed(context, GamePage.routeName);},
+                label: Text('Play'),
+                icon: Icon(Icons.games),
                 color: Theme.of(context).backgroundColor,
                 colorBrightness: Brightness.dark,
                 splashColor: Colors.white.withOpacity(0.5),

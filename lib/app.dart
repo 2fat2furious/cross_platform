@@ -1,3 +1,5 @@
+import 'package:cross_platform/pages/game/game_bloc.dart';
+import 'package:cross_platform/pages/game/game_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
@@ -10,6 +12,8 @@ import 'package:cross_platform/domain/usecases/register_use_case.dart';
 import 'package:cross_platform/pages/home/home.dart';
 import 'package:cross_platform/pages/login/login.dart';
 import 'package:cross_platform/pages/register/register.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -45,6 +49,13 @@ class MyApp extends StatelessWidget {
           child: const LoginPage(),
         );
       },
+      GamePage.routeName: (context) {
+        final getAuthState = Provider.of<GetAuthStateStreamUseCase>(context);
+        return BlocProvider<GameBloc>(
+          initBloc: () => GameBloc(getAuthState),
+          child: GamePage(),
+        );
+      },
     };
 
     return Provider<Map<String, WidgetBuilder>>(
@@ -55,6 +66,16 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           accentColor: const Color(0xFF000000),
         ),
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('en'),
+          const Locale('ru'),
+        ],
         initialRoute: '/',
         routes: routes,
       ),
