@@ -14,6 +14,8 @@ import 'package:cross_platform/pages/login/login.dart';
 import 'package:cross_platform/pages/register/register.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:cross_platform/pages/map/map_bloc.dart';
+import 'package:cross_platform/pages/map/map_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -54,6 +56,13 @@ class MyApp extends StatelessWidget {
         return BlocProvider<GameBloc>(
           initBloc: () => GameBloc(getAuthState),
           child: GamePage(),
+        );
+      },
+      MapPage.routeName: (context) {
+        final getAuthState = Provider.of<GetAuthStateStreamUseCase>(context);
+        return BlocProvider<MapBloc>(
+          initBloc: () => MapBloc(getAuthState),
+          child: MapPage(),
         );
       },
     };

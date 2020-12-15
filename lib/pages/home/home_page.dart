@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cross_platform/pages/game/game_page.dart';
+import 'package:cross_platform/pages/map/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:flutter_provider/flutter_provider.dart';
@@ -11,6 +12,7 @@ import 'package:cross_platform/pages/home/home_profile_widget.dart';
 import 'package:cross_platform/pages/login/login.dart';
 import 'package:cross_platform/utils/delay.dart';
 import 'package:cross_platform/utils/snackbar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
@@ -107,8 +109,21 @@ class _HomePageState extends State<HomePage>
               width: double.infinity,
               child: RaisedButton.icon(
                 onPressed: () {Navigator.pushNamed(context, GamePage.routeName);},
-                label: Text('Play'),
+                label: Text(AppLocalizations.of(context).play),
                 icon: Icon(Icons.games),
+                color: Theme.of(context).backgroundColor,
+                colorBrightness: Brightness.dark,
+                splashColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            Container(
+              height: 48.0,
+              margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
+              width: double.infinity,
+              child: RaisedButton.icon(
+                onPressed: () {Navigator.pushNamed(context, MapPage.routeName);},
+                label: Text(AppLocalizations.of(context).map),
+                icon: Icon(Icons.map),
                 color: Theme.of(context).backgroundColor,
                 colorBrightness: Brightness.dark,
                 splashColor: Colors.white.withOpacity(0.5),
