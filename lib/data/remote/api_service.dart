@@ -28,11 +28,6 @@ class ApiService implements RemoteDataSource {
     String password,
   ) async {
     final url = Uri.http(baseUrl, '/users/login');
-    // final credentials = '$login:$password';
-    // final basic = 'Basic ${base64Encode(utf8.encode(credentials))}';
-    // final json = await NetworkUtils.post(url, headers: {
-    //   HttpHeaders.authorizationHeader: basic,
-    // });
     final body = <String, String>{
       'login': login,
       'password': password,
@@ -96,61 +91,4 @@ class ApiService implements RemoteDataSource {
     return TokenResponse.fromJson(json);
   }
 
-  ///
-  /// Reset password
-  /// Special token and newPassword to reset password,
-  /// otherwise, send an email to email
-  /// return message
-  ///
-  @override
-  Future<TokenResponse> resetPassword(
-    String login, {
-    String token,
-    String newPassword,
-  }) async {
-    final url = Uri.http(baseUrl, '/users/$login/password');
-    final task = token != null && newPassword != null
-        ? NetworkUtils.post(url, body: {
-            'token': token,
-            'newPassword': newPassword,
-          })
-        : NetworkUtils.post(url);
-    final json = await task;
-    return TokenResponse.fromJson(json);
-  }
-
-  ///
-  /// Upload avatar image
-  /// return [User] profile after image file is uploaded
-  ///
-  @override
-  Future<UserResponse> uploadImage(
-    File file,
-    String login,
-  ) async {
-    final url = Uri.http(baseUrl, '/users/upload');
-    final stream = http.ByteStream(file.openRead());
-    final length = await file.length();
-    final request = http.MultipartRequest('POST', url)
-      ..fields['user'] = login
-      ..files.add(
-        http.MultipartFile(
-          'my_image',
-          stream,
-          length,
-          filename: path.basename(file.path),
-        ),
-      );
-    final streamedResponse = await request.send();
-    final statusCode = streamedResponse.statusCode;
-    final decoded = json.decode(await streamedResponse.stream.bytesToString());
-
-    debugPrint('decoded: $decoded');
-
-    if (statusCode < 200 || statusCode >= 300) {
-      throw RemoteDataSourceException(statusCode, decoded['message']);
-    }
-
-    return UserResponse.fromJson(decoded);
-  }
 }

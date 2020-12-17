@@ -18,13 +18,6 @@ abstract class RemoteDataSource {
     String token,
   );
 
-  Future<TokenResponse> resetPassword(
-    String login, {
-    String token,
-    String newPassword,
-  });
-
   Future<UserResponse> getUserProfile(String login, String token);
 
-  Future<UserResponse> uploadImage(File file, String login);
 }
