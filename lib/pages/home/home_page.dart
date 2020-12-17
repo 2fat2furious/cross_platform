@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text(AppLocalizations.of(context).appName),
       ),
       resizeToAvoidBottomInset: true,
       body: Container(
@@ -77,32 +77,6 @@ class _HomePageState extends State<HomePage>
         child: ListView(
           children: <Widget>[
             const HomeUserProfile(),
-            Container(
-              height: 48.0,
-              margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
-              width: double.infinity,
-              child: RaisedButton.icon(
-                onPressed: showChangePassword,
-                label: Text('Change password'),
-                icon: Icon(Icons.lock_outline),
-                color: Theme.of(context).backgroundColor,
-                colorBrightness: Brightness.dark,
-                splashColor: Colors.white.withOpacity(0.5),
-              ),
-            ),
-            Container(
-              height: 48.0,
-              margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
-              width: double.infinity,
-              child: RaisedButton.icon(
-                onPressed: homeBloc.logout,
-                label: Text('Logout'),
-                icon: Icon(Icons.exit_to_app),
-                color: Theme.of(context).backgroundColor,
-                colorBrightness: Brightness.dark,
-                splashColor: Colors.white.withOpacity(0.5),
-              ),
-            ),
             Container(
               height: 48.0,
               margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
@@ -129,6 +103,32 @@ class _HomePageState extends State<HomePage>
                 splashColor: Colors.white.withOpacity(0.5),
               ),
             ),
+            Container(
+              height: 48.0,
+              margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
+              width: double.infinity,
+              child: RaisedButton.icon(
+                onPressed: showChangePassword,
+                label: Text(AppLocalizations.of(context).chgPass),
+                icon: Icon(Icons.lock_outline),
+                color: Theme.of(context).backgroundColor,
+                colorBrightness: Brightness.dark,
+                splashColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
+            Container(
+              height: 48.0,
+              margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0),
+              width: double.infinity,
+              child: RaisedButton.icon(
+                onPressed: homeBloc.logout,
+                label: Text(AppLocalizations.of(context).logout),
+                icon: Icon(Icons.exit_to_app),
+                color: Theme.of(context).backgroundColor,
+                colorBrightness: Brightness.dark,
+                splashColor: Colors.white.withOpacity(0.5),
+              ),
+            ),
           ],
         ),
       ),
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage>
 
     if (message is LogoutMessage) {
       if (message is LogoutSuccessMessage) {
-        scaffoldKey.showSnackBar('Logout successfully!');
+        scaffoldKey.showSnackBar(AppLocalizations.of(context).exit);
         await delay(1000);
         await Navigator.of(context).pushNamedAndRemoveUntil(
           LoginPage.routeName,

@@ -5,6 +5,7 @@ import 'package:cross_platform/pages/register/register.dart';
 import 'package:cross_platform/utils/delay.dart';
 import 'package:cross_platform/utils/snackbar.dart';
 import 'package:cross_platform/widgets/password_textfield.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterPage extends StatefulWidget {
   static const routeName = '/register_page';
@@ -151,7 +152,7 @@ class _RegisterPageState extends State<RegisterPage>
 
   void handleMessage(RegisterMessage message) async {
     if (message is RegisterSuccessMessage) {
-      scaffoldKey.showSnackBar('Register successfully');
+      scaffoldKey.showSnackBar('Вы успешно зарегистрированы!');
       await delay(1000);
       Navigator.pop<String>(context, message.login);
     }
@@ -159,7 +160,7 @@ class _RegisterPageState extends State<RegisterPage>
       scaffoldKey.showSnackBar(message.message);
     }
     if (message is RegisterInvalidInformationMessage) {
-      scaffoldKey.showSnackBar('Invalid information');
+      scaffoldKey.showSnackBar(AppLocalizations.of(context).validate);
     }
   }
 
@@ -175,7 +176,7 @@ class _RegisterPageState extends State<RegisterPage>
               padding: const EdgeInsetsDirectional.only(end: 8.0),
               child: Icon(Icons.person),
             ),
-            labelText: 'Login',
+            labelText: AppLocalizations.of(context).login,
             errorText: snapshot.data,
           ),
           keyboardType: TextInputType.emailAddress,
@@ -197,7 +198,7 @@ class _RegisterPageState extends State<RegisterPage>
       builder: (context, snapshot) {
         return PasswordTextField(
           errorText: snapshot.data,
-          labelText: 'Password',
+          labelText: AppLocalizations.of(context).password,
           onChanged: registerBloc.passwordChanged,
           focusNode: passwordFocusNode,
           onSubmitted: () {
@@ -219,7 +220,7 @@ class _RegisterPageState extends State<RegisterPage>
         },
         color: Theme.of(context).backgroundColor,
         child: Text(
-          'REGISTER',
+          AppLocalizations.of(context).register,
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,

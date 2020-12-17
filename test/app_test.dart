@@ -13,7 +13,7 @@ void main() {
       final finder = find.byKey(Key('keyAt'));
       print(finder);
       expect(finder, findsNothing);
-      int index = 0;
+      var index = 0;
       print(find.widgetWithText(FlatButton, 'Exit').skipOffstage);
       while (index < 6) {
         await tester.tap(find.text(String.fromCharCodes([65 + index])));

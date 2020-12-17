@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:cross_platform/pages/home/change_password/change_password.dart';
 import 'package:cross_platform/widgets/password_textfield.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChangePasswordBottomSheet extends StatefulWidget {
   const ChangePasswordBottomSheet({Key key}) : super(key: key);
@@ -77,7 +78,7 @@ class _ChangePasswordBottomSheetState extends State<ChangePasswordBottomSheet>
         return PasswordTextField(
           errorText: snapshot.data,
           onChanged: changePasswordBloc.passwordChanged,
-          labelText: 'Old password',
+          labelText: AppLocalizations.of(context).oldPass,
           onSubmitted: () {
             FocusScope.of(context).requestFocus(newPasswordFocusNode);
           },
@@ -93,7 +94,7 @@ class _ChangePasswordBottomSheetState extends State<ChangePasswordBottomSheet>
         return PasswordTextField(
           errorText: snapshot.data,
           onChanged: changePasswordBloc.newPasswordChanged,
-          labelText: 'New password',
+          labelText: AppLocalizations.of(context).newPass,
           focusNode: newPasswordFocusNode,
           onSubmitted: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -138,7 +139,7 @@ class _ChangePasswordBottomSheetState extends State<ChangePasswordBottomSheet>
               changePasswordBloc.changePassword();
             },
             child: Text(
-              'Change password',
+              AppLocalizations.of(context).chgPass,
               style: TextStyle(fontSize: 16.0),
             ),
           );

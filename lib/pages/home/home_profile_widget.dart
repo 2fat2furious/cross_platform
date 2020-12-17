@@ -44,7 +44,7 @@ class HomeUserProfile extends StatelessWidget {
         Expanded(
           child: ListTile(
             title: Text(
-              "User: "+ user.login,
+              "Пользователь: "+ user.login,
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.w600,
@@ -70,7 +70,7 @@ class HomeUserProfile extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              'Loging out...',
+              'Выход',
               style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
             ),

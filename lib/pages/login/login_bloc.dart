@@ -10,6 +10,7 @@ import 'package:cross_platform/utils/streams.dart';
 import 'package:cross_platform/utils/type_defs.dart';
 import 'package:cross_platform/utils/validators.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore_for_file: close_sinks
 
@@ -95,7 +96,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
     final loginError$ = loginController.stream
         .map((login) {
           if (Validator.isValid(login)) return null;
-          return 'Invalid login';
+          return 'Поле с логином не должно быть пустым!';
         })
         .distinct()
         .share();
@@ -103,7 +104,7 @@ class LoginBloc extends DisposeCallbackBaseBloc {
     final passwordError$ = passwordController.stream
         .map((password) {
           if (Validator.isValid(password)) return null;
-          return 'Password must be at least 6 characters';
+          return 'Поле с паролем не должно быть пустым!';
         })
         .distinct()
         .share();

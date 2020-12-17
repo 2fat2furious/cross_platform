@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:disposebag/disposebag.dart';
 import 'package:flutter_bloc_pattern/flutter_bloc_pattern.dart';
 import 'package:meta/meta.dart';
@@ -10,9 +11,10 @@ import 'package:cross_platform/utils/streams.dart';
 import 'package:cross_platform/utils/type_defs.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 bool _isValidPassword(String password) {
-  return password.length >= 1;
+  return password.length > 0;
 }
 
 // ignore_for_file: close_sinks
@@ -79,11 +81,14 @@ class ChangePasswordBloc extends DisposeCallbackBaseBloc {
           final newPassword = tuple.item2;
 
           if (!_isValidPassword(password)) {
-            return 'Password must be at least 6 characters';
+            return 'Поле с паролем не должно быть пустым!';
+          }
+          if (!_isValidPassword(newPassword)) {
+            return 'Поле с паролем не должно быть пустым!';
           }
 
-          if (_isValidPassword(newPassword) && password == newPassword) {
-            return 'New password is same old password!';
+          if (_isValidPassword(newPassword) && (password == newPassword)) {
+            return 'Пароли не должны совпадать!';
           }
 
           return null;
@@ -97,11 +102,13 @@ class ChangePasswordBloc extends DisposeCallbackBaseBloc {
           final newPassword = tuple.item2;
 
           if (!_isValidPassword(newPassword)) {
-            return 'New password must be at least 6 characters';
+            return 'Поле с паролем не должно быть пустым!';
           }
-
-          if (_isValidPassword(password) && password == newPassword) {
-            return 'New password is same old password!';
+          if (!_isValidPassword(newPassword)) {
+            return 'Поле с паролем не должно быть пустым!';
+          }
+          if (_isValidPassword(newPassword) && (password == newPassword)) {
+            return 'Пароли не должны совпадать!';
           }
 
           return null;
@@ -141,7 +148,7 @@ class ChangePasswordBloc extends DisposeCallbackBaseBloc {
         return ChangePasswordState((b) => b
           ..isLoading = false
           ..error = null
-          ..message = 'Change password successfully!');
+          ..message = 'Пароль успешно изменен!');
       }
       if (result is Failure) {
         return ChangePasswordState((b) => b

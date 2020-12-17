@@ -7,6 +7,7 @@ import 'package:cross_platform/pages/register/register.dart';
 import 'package:cross_platform/utils/delay.dart';
 import 'package:cross_platform/utils/snackbar.dart';
 import 'package:cross_platform/widgets/password_textfield.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
@@ -158,7 +159,7 @@ class _MyLoginPageState extends State<LoginPage>
 
   void handleMessage(message) async {
     if (message is LoginSuccessMessage) {
-      scaffoldKey.showSnackBar('Login successfully');
+      scaffoldKey.showSnackBar('Успешно');
       await delay(1000);
       await Navigator.of(context).pushReplacementNamed(HomePage.routeName);
     }
@@ -166,7 +167,7 @@ class _MyLoginPageState extends State<LoginPage>
       scaffoldKey.showSnackBar(message.message);
     }
     if (message is InvalidInformationMessage) {
-      scaffoldKey.showSnackBar('Invalid information');
+      scaffoldKey.showSnackBar(AppLocalizations.of(context).messageCredentialsIncorrect);
     }
   }
 
@@ -182,7 +183,7 @@ class _MyLoginPageState extends State<LoginPage>
               padding: const EdgeInsetsDirectional.only(end: 8.0),
               child: Icon(Icons.person),
             ),
-            labelText: 'Login',
+            labelText: AppLocalizations.of(context).login,
             errorText: snapshot.data,
           ),
           keyboardType: TextInputType.emailAddress,
@@ -206,7 +207,7 @@ class _MyLoginPageState extends State<LoginPage>
         return PasswordTextField(
           errorText: snapshot.data,
           onChanged: loginBloc.passwordChanged,
-          labelText: 'Password',
+          labelText: AppLocalizations.of(context).password,
           textInputAction: TextInputAction.done,
           onSubmitted: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -229,7 +230,7 @@ class _MyLoginPageState extends State<LoginPage>
             .of(context)
             .backgroundColor,
         child: Text(
-          'LOGIN',
+          AppLocalizations.of(context).aut,
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
@@ -281,7 +282,7 @@ class _MyLoginPageState extends State<LoginPage>
         }
       },
       child: Text(
-        "Don't have an account? Sign up",
+        AppLocalizations.of(context).qLogin,
         style: TextStyle(
           color: Colors.white70,
           fontStyle: FontStyle.italic,
