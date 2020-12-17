@@ -17,8 +17,8 @@ void main() {
     test('testLogin', () async {
       final url = Uri.http('192.168.100.107', '/users/login');
       final body = <String, String>{
-        'login': 'testUser',
-        'password': '222',
+        'login': 'testUserZ',
+        'password': '111',
       };
       var decoded;
       try {
@@ -34,7 +34,7 @@ void main() {
     test('testRegister', () async {
       final url = Uri.http('192.168.100.107', '/users');
       final body = <String, String>{
-        'login': 'newUser0',
+        'login': 'newUser197',
         'password': '111',
       };
       var decoded;
@@ -46,23 +46,23 @@ void main() {
       expect(decoded, isNotNull);
     });
     test('testGet', () async {
-      final url = Uri.http('192.168.100.107', '/users/testUser');
+      final url = Uri.http('192.168.100.107', '/users/testUserZ');
       var json;
       try {
-        json = await NetworkUtils.get(url, headers: {'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMDE3OTk2ZC01ODIwLTQwY2YtYmJjYy1mNTgyZjVmZTA2ZmYiLCJpYXQiOjE2MDgyMTY2OTgsImV4cCI6MTYwODgyMTQ5OH0.Yhuxhs9NzRR_sZloUSa6pBE320uqdaorD2vBsDjtj5U'});
+        json = await NetworkUtils.get(url, headers: {'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiOTA3ODM3Yy1lNjY3LTQwYTgtODA3Yi1iZTY1Mzg5M2EzOGIiLCJpYXQiOjE2MDgyMTc3NTcsImV4cCI6MTYwODgyMjU1N30.pq0sGWmvbSzT28fHBnNILsE1qyHxybkiZmH02h22A-8'});
       } catch (Exeption) {
         json = null;
       }
       expect(json, isNotNull);
     });
     test('testChangePass', () async {
-      final url = Uri.http('192.168.100.107', '/users/change/newUser0');
-      final body = {'password': '111', 'newPassword': '222'};
+      final url = Uri.http('192.168.100.107', '/users/change/testUserZ');
+      final body = {'password': '111', 'newPassword': '111'};
       var json;
       try {
         json = await NetworkUtils.put(
             url,
-            headers: {'Content-Type': 'application/json', 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMDE3OTk2ZC01ODIwLTQwY2YtYmJjYy1mNTgyZjVmZTA2ZmYiLCJpYXQiOjE2MDgyMTY2OTgsImV4cCI6MTYwODgyMTQ5OH0.Yhuxhs9NzRR_sZloUSa6pBE320uqdaorD2vBsDjtj5U'},
+            headers: {'Content-Type': 'application/json', 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiOTA3ODM3Yy1lNjY3LTQwYTgtODA3Yi1iZTY1Mzg5M2EzOGIiLCJpYXQiOjE2MDgyMTc3NTcsImV4cCI6MTYwODgyMjU1N30.pq0sGWmvbSzT28fHBnNILsE1qyHxybkiZmH02h22A-8'},
             body: body,
             encoding: Encoding.getByName('utf-8'),);
       } catch (Exeption) {

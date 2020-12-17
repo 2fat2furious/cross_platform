@@ -1,5 +1,5 @@
 {
-  "appName": "WordPlay", "@appName": {"type":  "text"},
+  "appName": "Hangman", "@appName": {"type":  "text"},
   "gallows":"The Gallows", "@gallows": {"type":  "text"},
   "head":"The Head", "@head": {"type":  "text"},
   "body":"The Body", "@body": {"type":  "text"},
